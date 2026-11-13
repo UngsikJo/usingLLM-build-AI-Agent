@@ -1,0 +1,979 @@
+한국농공학회논문집 제68권 제5호, 2026 ∙ 1
+Ⅰ. 서  론
+가뭄 재해는 강수 부족으로 시작되지만, 그 영향은 수문 
+및 농업 시스템 전반에 걸쳐 복합적으로 나타난다 (Wilhite 
+and Glantz, 1985). 최근 기후변화로 인해 강수의 시공간적 
+변동성이 증가함에 따라 가뭄의 발생빈도와 강도가 증가하
+는 경향을 보이고 있으며, 이에 따라 농업 생산성 저하와 수
+자원 관리의 불확실성 또한 확대되고 있다 (Ma et al., 2025; 
+Suo et al., 2025). 특히 농업가뭄은 기상 조건에 대한 의존성
+이 높아 가뭄 발생 시 직접적인 농업 피해로 이어질 가능성
+이 크며, 이에 대한 정량적 평가와 체계적 관리의 중요성이 
+지속적으로 강조되고 있다 (Jang et al., 2016; Mun et al., 
+2020).
+농업가뭄은 토양수분 상태, 증발산량, 수문 순환 과정 등 
+다양한 기상·수문학적 요인의 영향을 받기 때문에 단순한 
+강수 결핍만으로 설명하기 어렵다 (Kim et al., 2021). 또한, 
+가뭄지수로 표현되는 기상·수문학적 상태와 실제 농업가뭄 
+발생 간에는 일정한 시간 지연 (time-lag)이 존재하는 것으
+로 보고되고 있다 (Lee et al., 2016). 예를 들어, 강수 부족이 
+발생하더라도 토양수분이 일정 수준 유지되는 경우 단기간 
+내 농업 피해로 이어지지 않을 수 있으며, 반대로 수분 부족
+이 누적될 경우 지수 변화 이후 일정 시간이 경과한 뒤에 농
+업가뭄이 발생할 수 있다. 이러한 시차 특성은 가뭄지수와 
+실제 농업가뭄 간의 정량적 연계성을 저하시킬 뿐만 아니
+라, 지수 기반 가뭄 평가의 활용성을 제한하는 주요 요인으
+로 작용한다 (Song et al., 2020; Tian et al., 2022).
+가뭄 상태를 정량적으로 평가하기 위해 표준강수지수 
+(Standardized Precipitation Index, SPI), 팔머가뭄지수 (Pal-
+mer Drought Severity Index, PDSI), 표준강수증발산지수 
+가뭄의 빈도·지속기간·강도와 지수 간 시차를 반영한 농업가뭄 통합지수 개발
+An Integrated Agricultural Drought Index Incorporating Event Characteristics and Lagged 
+Responses
+문영식a ･남원호b,† ･유석균c
+Mun, Young-Sik ･Nam, Won-Ho ･Yu, Seokkyun
+ABSTRACT
+Agricultural drought arises from complex interactions among hydro-meteorological variables, making it difficult to characterize using a single drought 
+index. This study develops an integrated agricultural drought index (IADI) that incorporates drought event characteristics and time-lag relationships 
+among multiple indicators. Grid-based drought indices from 1996 to 2024 were analyzed using run theory to quantify key drought characteristics, 
+including frequency, duration, and severity, which were used to construct a composite drought severity measure. The relative importance of individual 
+indices was estimated using entropy, CRITIC, and principal component analysis (PCA), and further refined by incorporating time-lag effects between 
+drought indices and agricultural drought responses. The proposed IADI was applied across South Korea, revealing consistently higher drought intensity 
+in southern regions, particularly in Jeolla and Gyeongsang provinces, as well as in parts of northern Gyeonggi and Jeju Island. Despite differences in 
+weighting schemes, the spatial patterns of IADI were highly consistent, with over 90% of grid cells exhibiting identical drought classifications. These 
+results demonstrate that the proposed index provides a robust and reliable representation of agricultural drought conditions. The IADI offers a practical 
+tool for drought monitoring and spatial risk assessment and establishes a scalable framework for integrating multi-source data and lag-aware modeling 
+in future drought prediction systems. The IADI provides a lag-aware, multi-index framework for robust agricultural drought assessment under increasing 
+hydro-climatic variability.
+Keywords: Agricultural drought; drought severity; time-lag effects; multi-index integration; run theory
+a
+Senior Researcher, National Agricultural Water Research Center, 
+Hankyong National University
+b
+Professor, School of Social Safety and Systems Engineering, 
+Institute of Agricultural Environmental Science, National Agricul-
+tural Water Research Center, Hankyong National University
+c
+Deputy Director, Water Management Supporting Department, 
+Water Resources Management Office, Korea Rural Community 
+Corporation (KRC)
+†
+Corresponding author
+Tel.: +82-31-670-5137  Fax: +82-31-670-5139
+E-mail: wonho.nam@hknu.ac.kr 
+Received: April 15, 2026
+Revised: May 6, 2026
+Accepted: May 19, 2026
+Journal of the Korean Society of Agricultural Engineers
+Vol. 68, No. 5, pp. 1~13, September 2026
+DOI : http://doi.org/10.5389/KSAE.2026.68.5.001
+ISSN 1738-3692  eISSN 2093-7709
+가뭄의 빈도·지속기간·강도와 지수 간 시차를 반영한 농업가뭄 통합지수 개발
+2 ∙ Journal of the Korean Society of Agricultural Engineers, 68(5), 2026. 9
+(Standardized Precipitation Evapotranspiration Index, SPEI), 
+토양수분지수 (Soil Moisture Index, SMI) 등 다양한 가뭄지
+수가 활용되어 왔다 (Vicente-Serrano et al., 2010). Tian et 
+al. (2018)은 PDSI, SPI, SPEI, Z-index를 비교하여 토양수
+분 및 작물수확량과의 연관성을 분석함으로써 농업가뭄 모
+니터링에 적합한 지수를 평가하였다. Jamalzi et al. (2025)
+는 SPI와 SPEI를 활용하여 1974–2023년 동안 아프가니스
+탄의 기상학적 가뭄의 시공간적 변화와 경향을 분석하고, 
+가뭄의 빈도, 지속기간, 강도가 증가하는 경향을 확인하였
+다. 또한 Disasa et al. (2026)은 SPI, SPEI, PDSI를 기반으로 
+기후변화에 따른 가뭄 특성 변화와 가뭄 유형 간 전파 특성
+을 종합적으로 분석하였다.
+이러한 기존 연구들은 기상 및 수문 조건을 표준화하여 
+가뭄 강도를 정량적으로 평가하는 데 유용하지만, 대부분 
+특정 시점의 지수 값에 기반하여 가뭄 상태를 표현하는 데 
+초점을 두고 있어 가뭄의 빈도, 지속기간, 강도와 같은 사건 
+(event) 기반 특성을 구조적으로 반영하지 못하는 한계가 
+있다. 또한 지수 값의 크기에 의존하는 접근은 가뭄의 발생 
+빈도와 지속성, 그리고 심각도를 통합적으로 설명하는 데 
+제약이 있다.
+이러한 한계를 보완하기 위해 가뭄을 개별 사건 (event) 
+단위로 정의하고 그 특성을 정량화하려는 접근이 제시되어 
+왔다. 가뭄 사건의 빈도 (frequency), 지속기간 (duration), 강
+도 (intensity)는 가뭄의 구조적 특성을 설명하는 핵심 요소
+로 간주되며, 이를 통합적으로 고려할 필요성이 강조되고 
+있다 (Lee et al., 2017; Wang et al., 2022; Ma et al., 2023).
+그러나 이러한 사건 기반 접근에서도 각 특성 간 상대적 
+중요도를 설정하기 위한 체계적인 기준은 여전히 명확하지 
+않다. Hoque et al. (2020)은 AHP (Analytic Hierarchy Pro-
+cess) 기반 다기준 의사결정 기법을 활용하여 기상·농업·수
+문 요소를 통합한 가뭄 취약성 지도를 구축하였으며, Hoda-
+sová et al. (2025)는 Landsat 기반 위성자료를 활용하여 AHP
+와 퍼지 이론 (fuzzy logic)을 결합한 가뭄 취약성과 위험도를 
+평가하였다. 그러나 이러한 접근은 전문가 판단에 기반한 가
+중치 설정에 의존한다는 한계를 가지며, 가뭄 사건 특성 간 
+상대적 중요도를 객관적으로 도출하는 데에는 제약이 있다.
+이와 같이 동일 가중치 적용 또는 경험적 판단에 기반한 
+가중치 설정은 적용이 용이하다는 장점이 있으나, 특성 간 
+변별력을 충분히 반영하지 못하며, 지역적 특성에 따른 영
+향 차이를 구조적으로 설명하는 데 한계가 있다. 따라서 가
+뭄지수 간 상대적 중요도를 객관적으로 반영할 수 있는 체계
+적이고 데이터 기반의 가중치 산정 방법이 요구된다 (Dha-
+wale et al., 2024). 특히 이러한 가중치 산정은 가뭄지수 간 
+상호관계와 동적 특성을 반영할 수 있어야 하나, 이는 기존 
+연구에서 충분히 고려되지 않았다.
+또한, 가뭄지수와 실제 농업가뭄 발생 간에는 시간 지연 
+(time lag)이 존재함에도 불구하고, 이러한 시차 특성을 지
+수의 가중 구조에 직접적으로 반영한 연구는 제한적이다. 
+Nam et al. (2013)은 저수지 기반 가뭄지수를 활용하여 농업
+가뭄 위험도를 평가하고 지수 값과 실제 피해 간의 관계를 
+분석하였으며, Mohammed et al. (2022)과 Irawan et al. 
+(2023)은 각각 SPI 및 SPEI를 활용하여 가뭄 조건과 작물 수
+확량 간의 관계를 평가하였다. 그러나 기존 연구들은 주로 
+가뭄지수와 피해 자료 간의 정적 (static) 상관성 분석에 초
+점을 두고 있어, 시간 지연에 따른 영향 변화나 특성 간 중요
+도의 동적 변화를 체계적으로 반영하지 못하는 한계를 가진
+다. 특히 시차에 따른 반응 차이는 농업가뭄 발생 메커니즘
+을 이해하는 핵심 요소임에도 불구하고, 이를 통합지수의 
+가중 구조에 반영하려는 시도는 부족한 실정이다.
+따라서 가뭄 사건 특성의 통합뿐만 아니라, 특성 간 상대
+적 중요도를 객관적으로 산정하고, 실제 농업가뭄과의 시
+간적 관계를 고려하여 이를 동적으로 재조정할 수 있는 구
+조적 접근이 필요하다 (Ryu et al., 2019). 이러한 접근은 가
+뭄지수와 농업 피해 간의 비선형적이고 시차적인 상호작용
+을 반영할 수 있다는 점에서 기존 지수 기반 평가 방법과 차
+별화된다.
+본 연구에서는 격자 기반 가뭄지수를 활용하고 RUNS 이
+론을 적용하여 가뭄 사건을 정의한 후, 빈도, 지속기간, 강도
+와 같은 사건 특성을 정량적으로 산정하였다. 또한 Entropy, 
+CRITIC (Criteria Importance Through Intercriteria Corre-
+lation), PCA (Principal Component Analysis) 기반 가중치 
+산정 기법을 적용하여 각 가뭄지수의 상대적 중요도를 도출
+하였다. 또한 가뭄지수와 실제 농업가뭄 발생 간의 시간 지
+연(time lag)을 분석하고, 지수 감쇠 함수를 통해 가중치를 
+재조정함으로써 시차 효과를 반영하였다. 이를 통해 가뭄 
+사건 특성과 시간적 지연 효과를 동시에 고려한 농업가뭄통
+합지수 (Integrated Agricultural Drought Index, IADI)를 개
+발하고, 기존 단일 지수 기반 접근의 한계를 보완할 수 있는 
+구조적 평가 체계를 제시하였다.
+Ⅱ. 연구 재료 및 방법
+1. 연구 자료 및 가뭄지수 구축
+가. 가뭄지수 산정 자료
+본 연구에서는 격자 단위 가뭄 특성을 분석하기 위해 위
+문영식･남원호･유석균
+한국농공학회논문집 제68권 제5호, 2026 ∙ 3
+성 기반 강수 자료와 기상·수문 자료를 활용하여 가뭄지수
+를 산정하였다. 모든 자료는 격자 단위의 월별 자료를 기준
+으로 구축하였으며, 장기적인 가뭄 변동성을 안정적으로 
+반영하기 위해 30년 이상의 장기 시계열 자료를 기준으로 
+분석을 수행하였다. 격자 기반 자료는 공간적으로 균질한 
+강수 및 수문 정보를 제공할 수 있어, 지역 간 가뭄 특성의 비
+교 및 공간적 가뭄 패턴 분석에 유리한 장점이 있다.
+가뭄의 기상학적 및 수문학적 특성을 반영하기 위해 
+SPEI와 SMI를 활용하였다. SPEI는 강수량과 잠재증발산량
+의 차이를 기반으로 수분수지 (water balance)를 계산하여 
+가뭄 상태를 평가하는 지수로, 강수 부족뿐 아니라 기온 상승
+에 따른 증발산 수요 증가를 동시에 반영할 수 있는 장점이 있
+다. 본 연구에서는 SPEI 산정을 위해 위성 기반 CHIRPS V3.0 
+(Climate Hazards Group InfraRed Precipitation with Station 
+data Version 3.0) 강수 자료와 TerraClimate 잠재증발산량 
+자료를 활용하였다 (Table 1). 산정 과정에서는 월별 수분수
+지를 계산한 후 장기 시계열 자료를 기준으로 확률분포를 
+적합하고, 누적확률을 산정한 뒤 이를 표준정규분포로 변
+환하여 지수를 산정하였다. 또한, 토양수분 기반 가뭄 특성
+을 반영하기 위해 TerraClimate에서 제공하는 근권층 토양
+수분 (root-zone soil moisture) 자료를 활용하여 토양수분지
+수 (SMI)를 산정하였다. 토양수분지수는 토양 내 수분 저장
+량 변화를 기반으로 농업적 가뭄 상태를 평가할 수 있는 지
+수로, 강수 기반 지수와 달리 실제 토양수분 상태를 직접적
+으로 반영할 수 있는 특징이 있다. 본 연구에서는 월별 토양
+수분 자료에 대해 확률분포 적합 및 표준정규 변환 과정을 
+적용하여 토양수분 이상 상태를 정량적으로 평가하였다.
+나. 농업가뭄 발생자료
+가뭄지수와 실제 농업가뭄 발생 간의 시간적 관계를 분
+석하기 위해 농업가뭄 예·경보 자료를 활용하였다. 해당 자
+료는 저수지 저수율과 농업용수 공급 상황을 고려하여 농업
+가뭄 발생 여부를 판단한 결과를 기반으로 구축된 것으로, 
+관리 체계 내에서 인지되는 농업가뭄 상태를 월 단위 시계
+열로 제공한다. 이러한 특성은 농업가뭄 발생 시점을 연속
+적으로 파악할 수 있어 가뭄지수와의 시간적 대응 관계를 
+분석하는 데 유용하다.
+본 연구에서는 예·경보 단계 중 관심, 주의, 경계, 심각 단
+계가 해당 월에 한 번이라도 나타난 경우를 농업가뭄 발생
+으로 정의하고, 이를 이진 변수 형태로 재구성하였다. 모든 
+예·경보 단계를 발생(1)으로 정의한 것은 분석 기간 동안 농
+업가뭄 발생 빈도가 상대적으로 낮아 주의 단계 이상만을 
+기준으로 설정할 경우 ROC-AUC 기반 시차 분석에 필요한 
+충분한 양성 표본을 확보하기 어렵기 때문이다. 표본 수가 
+제한될 경우 ROC 곡선의 안정성과 AUC 추정의 신뢰성이 
+저하될 수 있으므로, 조기경보 관점에서 관심 단계부터 농
+업가뭄 발생 신호로 간주하는 것이 타당하다고 판단하였다 
+(Feng et al., 2017).
+이를 통해 농업가뭄 발생 여부에 대한 월 단위 시계열 자
+료를 구축하고, 가뭄지수와 농업가뭄 발생 간의 시간적 반
+응 관계를 분석하였다. 분석 기간은 2018년부터 2023년까
+지로 설정하였다.
+2. RUNS 이론 기반 가뭄 사건 정의 및 특성 추출
+본 연구에서는 SPEI 및 SMI 시계열을 기반으로 RUNS 
+이론을 적용하여 가뭄 사건을 정의하고 그 특성을 분석하였
+다. RUNS 이론은 시계열 자료에서 특정 임계값(threshold)
+을 기준으로 연속적으로 나타나는 구간을 하나의 사건으로 
+정의하는 방법으로, 가뭄과 같은 수문 극한 현상의 지속성
+과 강도를 분석하는 데 활용된다 (Fig. 1). 본 연구에서는 가
+뭄지수 값이 설정된 임계값 이하로 감소하는 구간을 가뭄 
+상태로 정의하고, 해당 조건이 연속적으로 유지되는 최대 
+구간을 하나의 가뭄 사건으로 간주하였다. 가뭄 상태는 이
+진 변수 (0과 1)로 구성하였으며, 임계값 이하 상태가 연속
+되는 기간을 기준으로 사건을 구분하였다 (식 (1)).
+
+≤
+≻ 
+(1)
+여기서 는 가뭄 상태를 나타내는 변수, 는 격자, 는 
+시점을 의미하고, 는 가뭄지수 값, 는 임계값을 나타
+낸다. 또한, 결과값이 0이면 비 가뭄 상태를 의미하고, 1이
+면 해당 시점이 가뭄 상태임을 나타낸다.
+이와 같이 정의된 가뭄 사건을 바탕으로 발생빈도 (fre-
+Table 1 Input datasets used for the calculation of drought indices
+Dataset
+Variable
+Spatial resolution
+Temporal resolution
+Application
+CHIRPS v3.0
+Precipitation
+0.05° × 0.05°
+Monthly
+Calculation of SPEI-3, SPEI-6, and SPEI-12
+TerraClimate
+Potential evapotranspiration (PET)
+0.0417° × 0.0417°
+Monthly
+Calculation of SPEI-3, SPEI-6, and SPEI-12
+TerraClimate
+Root-zone soil moisture
+0.0417° × 0.0417°
+Monthly
+Calculation of SMI
+가뭄의 빈도·지속기간·강도와 지수 간 시차를 반영한 농업가뭄 통합지수 개발
+4 ∙ Journal of the Korean Society of Agricultural Engineers, 68(5), 2026. 9
+quency), 지속 기간 (duration), 강도 (severity)를 산정하였
+다. 먼저, 발생빈도는 전체 분석 기간 중 가뭄 상태로 분류된 
+월의 비율로 정의하였다. 이는 특정 가뭄지수가 가뭄을 얼
+마나 자주 포착하는지를 나타내는 지표이며, 격자 에서의 
+발생빈도 는 식 (2)와 같이 산정하였다.
+
+
+
+
+
+
+×  
+(2)
+여기서 는 전체 분석 기간의 총 개월 수를 의미한다. 따
+라서 는 전체 기간 중 가뭄 상태가 차지하는 비율로 해석
+할 수 있다.
+지속 기간은 개별 가뭄 사건이 연속적으로 유지된 개월 
+수로 정의하였다. 즉, 임계값 이하 상태가 이어지는 기간의 
+길이를 의미하며, 번째 가뭄 사건의 지속 기간 는 식 (3)
+과 같이 나타냈다.
+ 
+(3)
+여기서 와 는 각각 격자 에서 번째 가뭄 사건의 
+시작 시점과 종료 시점을 의미한다. 지속 기간은 개별 가뭄 
+사건이 얼마나 오래 지속되었는지를 나타내는 지표로 활용
+된다.
+마지막으로 강도는 가뭄 사건이 지속되는 기간 가뭄지수 
+값이 임계값 이하로 감소한 정도를 누적한 값으로 정의하였
+다. 즉, 각 시점에서 임계값과 지수값의 차이를 가뭄 기간 동
+안 합산하여 가뭄의 누적 결핍 정도를 정량화하였다. 격자 
+에서 번째 가뭄 사건의 강도 는 식 (4)와 같이 산정하
+였다.
+
+
+
+
+≤ 
+(4)
+여기서 는 격자 , 시점 에서의 가뭄지수 값이며, 
+는 가뭄 판단을 위한 임계값이다. 따라서 강도는 가뭄 기간
+이 길고 지수 값이 임계값보다 더 낮게 나타날수록 크게 산
+정되며, 가뭄의 심각도를 나타내는 지표로 활용된다.
+본 연구에서는 산정된 가뭄 발생빈도, 지속기간, 강도를 
+가뭄 사건의 핵심 특성으로 정의하고, 이를 가중치 산정 및 
+통합지수 개발에 활용하였다. 가뭄 사건의 임계값은 세계
+기상기구 (World Meteorological Organization, WMO)의 가
+뭄 등급 분류 기준을 참고하여 –1.5로 설정하였으며, 이는 
+표준화 가뭄지수 체계에서 심한 가뭄 (severe drought)에 해
+당한다. 임계값을 –1.0으로 설정할 경우 보통 가뭄 (moderate 
+drought) 수준의 단기 변동까지 포함되어 가뭄 사건이 과다 
+추출되는 문제가 발생하였다. 이로 인해 가뭄 사건의 지속
+기간과 강도와 같은 구조적 특성이 단기 변동성에 의해 왜
+곡되는 경향이 확인되었다. 따라서 본 연구에서는 구조적
+으로 유의미한 가뭄 사건을 안정적으로 추출하기 위해 –1.5 
+임계값을 적용하였다. 선정된 가뭄 사건 특성은 가뭄의 발
+생 빈도, 지속성, 심각도를 각각 정량적으로 나타내며, 동일
+한 임계값 기준과 격자 단위 월 해상도에서 일관되게 산정
+하였다. 이를 통해 가뭄지수별 민감도와 사건 특성 간 차이
+를 비교할 수 있도록 하였다.
+3. 객관적 가중치 산정 방법
+가뭄 특성 간 중요도를 설정하는 방법으로 동일 가중치 
+또는 경험적 가중치를 적용할 수 있으나, 이러한 접근은 각 
+특성이 가지는 정보량의 차이와 변수 간 상관관계를 충분히 
+반영하지 못하는 한계가 있다. 특히 동일 가중치 방식은 모
+Fig. 1 Conceptual illustration of drought event identification and quantification of frequency, duration, and severity using run theory
+문영식･남원호･유석균
+한국농공학회논문집 제68권 제5호, 2026 ∙ 5
+든 특성이 동일한 중요도를 갖는다는 가정을 전제로 하므
+로, 실제 자료에서 나타나는 변동성 및 설명력의 차이를 반
+영하기 어렵다. 또한 경험적 가중치 설정은 연구자의 주관
+적 판단이 개입될 가능성이 있어 통합지수 산정의 객관성과 
+재현성을 저하시킬 수 있다. 이에 본 연구에서는 자료의 통
+계적 특성과 변수 간 상관관계를 반영할 수 있는 객관적 가
+중치 산정 기법 (objective weighting methods)을 적용하였
+다. Entropy, CRITIC, PCA 기반 가중치 산정 방법을 활용하
+여 각 가뭄 특성의 상대적 중요도를 도출하였다. 이러한 기
+법들은 자료의 분산 구조, 변수 간 상관관계, 그리고 주요 변
+동 패턴을 기반으로 가중치를 산정한다는 점에서 다변량 지
+표 구성에 널리 활용되고 있다 (Kim et al., 2023; Satapathy 
+et al., 2024).
+가. Entropy 기반 가중치 산정
+Entropy 방법은 정보이론에 기반하여 각 변수의 정보량을 
+정량적으로 평가하고, 이를 통해 가중치를 산정하는 방법이
+다. 일반적으로 변수값의 변동성이 클수록 더 많은 정보를 포
+함한다고 판단되어 높은 가중치가 부여되며, 분포가 균등할
+수록 정보량이 적어 낮은 가중치가 부여된다. 먼저, 각 변수 
+값을 식 (5)와 같이 정규화하여 확률분포 형태로 변환한다.
+
+
+
+
+
+
+ 
+(5)
+여기서 는 번째 격자에서 번째 가뭄 특성값이며, 
+는 정규화된 확률값을 의미한다. 은 분석에 사용된 격자의 
+개수를 의미한다. 각 변수의 Entropy 값은 식 (6)과 같이 나
+타낸다.
+
+
+
+ln 
+(6)
+여기서 는 번째 변수의 Entropy 값이며, 는 정규화 
+상수로 ln이다. Entropy 값을 기반으로 각 변수의 
+가중치는 식 (7)과 같이 산정된다.
+
+
+
+
+
+
+ 
+(7)
+여기서 는 번째 변수의 가중치를 의미하며, 은 변
+수의 개수를 나타낸다. 
+나. CRITIC 기반 가중치 산정
+CRITIC 가중치 산정 방법은 변수의 변동성과 변수 간 상
+관관계를 동시에 고려하여 가중치를 산정하는 객관적 가중
+치 산정 방법이다. 일반적으로 변수의 표준편차가 클수록 
+해당 변수는 높은 변동성을 가지며 더 많은 정보를 포함한
+다고 판단된다. 또한 변수 간 상관성이 낮을수록 독립적인 
+정보를 제공하는 것으로 간주된다. 따라서 CRITIC 방법은 
+변수의 분산과 변수 간 상관성을 동시에 반영하여 가중치를 
+산정할 수 있다. 먼저 각 변수의 표준편차를 산정하여 변수
+의 변동성을 평가한다 (식 (8)).
+
+
+
+
+
+
+ 
+(8)
+여기서 는 번째 격자에서 번째 변수 값을 의미하며, 
+는 번째 변수의 평균값이다. 은 분석에서 사용된 자료
+의 개수를 나타낸다. 이후 변수 간 상관계수 를 산정하여 
+변수 간 상관성을 평가한다. 각 변수의 정보량 는 식 (9)와 
+같이 계산된다.
+
+
+
+ 
+(9)
+계산된 정보량을 바탕으로, 각 변수의 가중치는 식 (10)
+과 같이 산정된다.
+
+
+
+
+
+
+ 
+(10)
+다. PCA 기반 가중치 산정
+PCA는 다변량 주요 변동 구조를 파악하기 위해 활용되
+는 통계적 기법으로, 변수 간 상관관계를 고려하여 자료의 
+분산을 설명하는 주요 주성분을 도출하는 방법이다. PCA
+를 적용하면 다수의 변수로 구성된 자료를 소수의 주성분으
+로 변환할 수 있으며, 각 변수의 주성분 적재값 (loadings)을 
+기반으로 변수의 상대적 중요도를 평가할 수 있다. 먼저 변
+수 간 공분산 행렬을 구성하고, 이를 기반으로 고윳값 (eigen-
+value)과 고유벡터를 산정한다 (식 (11)). 
+ 
+(11)
+여기서 는 번째 주성분의 고윳값, 는 해당 주성분의 
+가뭄의 빈도·지속기간·강도와 지수 간 시차를 반영한 농업가뭄 통합지수 개발
+6 ∙ Journal of the Korean Society of Agricultural Engineers, 68(5), 2026. 9
+고유벡터를 의미한다. 각 변수의 가중치는 주성분의 기여도
+와 변수의 적재값을 기반으로 식 (12)와 같이 산정하였다.
+
+
+
+
+
+
+
+
+
+
+
+ 
+(12)
+여기서 는 번째 변수의 가중치이며, 는 번째 변수
+의 번째 주성분에 대한 적재값을 의미한다. 또한 는 번
+째 주성분의 고윳값이며, 는 선택된 주성분의 개수를 나타
+낸다.
+본 연구에서는 RUNS 이론을 통해 산정된 가뭄 사건 특
+성인 발생빈도, 지속 기간, 강도를 활용하여 가뭄지수별 가
+뭄 심도를 설정하고, 이를 입력변수로 설정하여 Entropy, 
+CRITIC, PCA 방법을 통해 가중치를 산정하였으며, 이를 
+활용하여 가뭄 사건 특성의 상대적 중요도를 종합적으로 분
+석하였다. 각 방법은 정보량 기반 분산 특성, 변수 간 상관구
+조, 자료의 주요 변동 구조를 서로 다른 관점에서 반영하기 
+때문에, 복합적인 특성을 갖는 가뭄 사건 특성의 중요도를 
+안정적으로 평가할 수 있다. 이후 산정된 가중치는 실제 농
+업가뭄 발생 간의 시차 특성을 고려하여 재조정하고, 이를 
+기반으로 통합지수를 산정하였다.
+4. 시차 기반 농업가뭄 통합지수 개발
+가. 시차 기반 가중치 재조정
+통계 기반 가중치는 가뭄지수의 분산 특성과 상관 구조
+를 반영하는 데에는 효과적이지만, 실제 농업가뭄 발생 시
+점과 지수 반응 간의 시간적 차이를 직접적으로 고려하지 
+못하는 한계가 있다. 본 연구에서는 이러한 한계를 보완하
+기 위해 농업가뭄 발생과 가뭄지수 간의 반응 특성을 반영
+한 시차 기반 보정 절차를 적용하였다. 가뭄지수와 농업가
+뭄 발생 간의 시차 특성은 선행연구 (Mun et al., 2026)에서 
+ROC (Receiver Operating Characteristic) 분석을 통해 정량
+적으로 평가된 바 있다. 해당 연구에서는 각 가뭄지수에 대
+해 농업가뭄 발생과의 평균 시차와 탐지 성능을 도출하였으
+며, 본 연구에서는 이를 반응 보정계수 산정에 활용하였다.
+본 연구에서는 선행연구에서 도출된 시차 및 AUC (Area 
+Under the ROC Curve) 값을 활용하여 지수의 반응 특성을 
+정량화하였다. AUC 값은 해당 지수가 농업가뭄 발생을 탐
+지하는 민감도를 의미하며, 시차 값은 지수가 실제 농업가
+뭄 발생에 반응하기까지의 시간적 지연을 나타낸다. 이러
+한 두 요소를 결합하여 반응보정계수 (Response Adjustment 
+Coefficient, )를 산정하였다 (식 (13)).
+× 
+
+
+
+ 
+(13)
+여기서 는 지수의 반응보정계수, 는 해당 지수
+의 탐지 성능, 는 농업가뭄 발생에 대한 평균 시차를 의
+미하며, 는 시차에 따른 반응 감소 정도를 조절하는 감쇠 
+상수이다.
+지수함수 형태의 감쇠항은 시차가 증가할수록 지수의 반
+응성이 점진적으로 감소하도록하는 역할을 한다. 본 연구
+에서는 선행연구에서 도출된 평균 시차 규모를 고려하여 감
+쇠 상수 를 설정하였다. 이를 통해 농업가뭄 발생과 지수 
+반응 간의 시간적 차이를 고려하면서도 지수의 탐지 성능을 
+동시에 반영할 수 있도록 하였다.
+나. 농업가뭄 통합지수 (IADI) 산정
+가뭄지수별 가뭄 특성과 반응 특성을 종합적으로 반영하
+기 위해 농업가뭄 통합지수 (Integrated Agricultural Drought 
+Index, IADI)를 산정하였다 (Fig. 2). 먼저 RUNS 이론을 통
+해 도출된 가뭄 사건 특성인 발생빈도, 지속 기간, 강도를 각
+각 정규화하여 변수 간 단위 차이에 따른 영향을 최소화하
+였다. 이후 정규화된 세 특성을 동일 가중 평균하여 가뭄 심
+도 (Drought Severity, DS)를 산정하였다 (식 (14)). 발생빈
+도, 지속기간, 강도는 가뭄 사건의 구조적 특성을 각각 독립
+적인 측면에서 정량화하는 지표로, 어느 하나가 다른 특성
+보다 우선적으로 중요하다고 볼 근거가 명확하지 않으며, 
+선행연구에서도 세 특성을 동등하게 취급하는 사례가 보고
+된 바 있다 (Ma et al., 2023). 이와 같이 DS 산정에서의 동일
+가중 평균은 하나의 가뭄지수 내에서 세 특성을 결합하는 
+방식으로, 이후 단계에서 Entropy, CRITIC, PCA 기법을 통
+해 가뭄지수 간 상대적 중요도를 산정하는 객관적 가중치 
+산정과는 적용 대상과 목적을 구별하였다.
+
+′′′ 
+(14)
+여기서 ′′′는 각각 지수 에 대한 정규화된 발생빈
+도, 지속 기간, 강도를 의미한다. 다음으로 Entropy, CRITIC, 
+PCA 방법을 통해 산정된 가중치에 시차 기반 반응 보정계
+수를 적용한 후, 각 가중치 방법별 농업가뭄 통합지수를 각
+각 산정하였다. 통합지수는 각 가뭄지수의 가뭄 심도와 반
+응 특성을 가중합 형태로 결합하여 계산하였다 (식 (15)).
+문영식･남원호･유석균
+한국농공학회논문집 제68권 제5호, 2026 ∙ 7
+
+
+
+
+′×  
+(15)
+여기서 
+는 가중치 산정 방법 에 따라 계산된 격
+자 의 농업가뭄 통합지수이며, 은 Entropy, CRITIC, 
+PCA를 의미한다. 는 격자 에서 지수 의 가뭄 심도, 
+′는 가중치 산정 방법 에 대한 시차 기반 반응 보정
+이 적용된 최종 가중치를 의미한다. 
+산정된 농업가뭄 통합지수는 격자 단위에서 장기 기간 
+동안의 가뭄 발생 특성과 농업가뭄 반응 특성을 종합적으로 
+반영하는 지표로 활용되며, 이를 통해 가중치 산정 방법에 
+따른 통합지수의 공간적 분포 차이를 비교할 수 있도록 하
+였다.
+Ⅲ. 결과 및 고찰
+1. 가뭄 사건 특성의 시계열 및 통계적 특성
+격자 단위 가뭄 사건의 특성 분석은 CHIRPS V3.0 기준 
+(약 5 km) 국내 육지 4,012개 격자를 대상으로, 1996년 1월
+부터 2024년 12월까지의 월별 가뭄지수 시계열을 활용하
+였다. 가뭄 사건은 가뭄지수가 –1.5 이하로 감소하는 구간
+을 임계값으로 정의하였으며, 이를 기준으로 각 격자에서 
+발생빈도, 지속기간, 강도를 산정하였다. 이러한 가뭄 사건 
+특성은 SPEI-3, SPEI-6, SPEI-12 및 SMI에 대해 각각 계산
+하였다.
+가뭄 사건 특성의 통계적 요약 결과는 Table 2에 제시하
+였다. 가뭄 발생빈도는 SPEI-12에서 가장 높은 값 (7.72%)
+을 나타낸 반면, SMI에서는 가장 낮은 값 (5.86%)을 보였
+다. 지속기간의 경우 SPEI-12에서 가장 긴 평균 지속기간 
+(3.29개월)이 나타났으며, SPEI-3에서 가장 짧은 지속기간 
+(1.42개월)이 확인되었다. 또한 가뭄 강도 역시 SPEI-12에
+서 가장 높은 평균값 (1.32)을 보였고, SMI에서 가장 낮은 
+값 (0.63)이 나타났다. 이러한 결과는 가뭄지수의 시간 규모
+Fig. 2 Framework for developing the Integrated Agricultural Drought Index (IADI), integrating drought event characteristics, objective 
+weighting, and lag-response adjustment
+Table 2 Statistical summary of drought event characteristics, 
+including frequency, duration, and severity, derived 
+using run theory. Values are presented as mean ± 
+standard deviation
+Index
+Frequency 
+(events)
+Duration 
+(months)
+Severity 
+(unitless)
+SPEI-3
+7.19 ± 0.79
+1.42 ± 0.16
+0.83 ± 0.22
+SPEI-6
+7.69 ± 0.79
+2.07 ± 0.41
+0.99 ± 0.29
+SPEI-12
+7.72 ± 1.01
+3.29 ± 0.88
+1.32 ± 0.54
+SMI
+5.86 ± 0.44
+1.70 ± 0.25
+0.63 ± 0.11
+가뭄의 빈도·지속기간·강도와 지수 간 시차를 반영한 농업가뭄 통합지수 개발
+8 ∙ Journal of the Korean Society of Agricultural Engineers, 68(5), 2026. 9
+와 물리적 특성에 따라 가뭄 사건의 발생 특성이 체계적으로 
+달라짐을 보여준다. 즉, 누적 기간이 긴 지수일수록 가뭄의 
+지속성과 강도가 크게 나타나는 반면, 단기 지수는 상대적으
+로 짧은 지속기간과 낮은 강도를 보이는 경향이 확인된다.
+가뭄 사건 특성의 분포는 Figs. 3–5에 각각 제시하였다. 
+Fig. 3은 가뭄 발생빈도의 분포를 나타낸 것으로, SPEI-6과 
+SPEI-12에서 상대적으로 높은 빈도 분포가 나타난 반면, 
+SMI는 전반적으로 낮은 값을 보였다. Fig. 4는 가뭄 사건의 
+지속기간 분포를 나타내며, SPEI-3, SPEI-6, SPEI-12 순으
+로 지속기간이 증가하는 경향이 확인되었다. 특히 SPEI-12
+에서 가장 긴 지속기간이 나타났으며, 이는 시간 규모가 증
+가할수록 단기적인 강수 변동보다 장기적인 수분 부족 상태
+를 반영하기 때문으로 해석된다. SMI는 SPEI-3보다 다소 
+긴 지속기간을 보였으나, SPEI-6과 SPEI-12보다는 짧은 수
+준으로 나타났다. Fig. 5는 가뭄 강도의 분포를 나타내며, 
+SPEI-12에서 가장 높은 강도가 나타났고, SPEI-6, SPEI-3 
+순으로 감소하는 경향을 보였다. 반면, SMI는 상대적으로 
+낮은 강도 분포를 보였다.
+이러한 결과는 각 가뭄지수가 반영하는 수문·기상학적 
+과정의 차이와 밀접하게 관련된다. 단기 가뭄지수인 SPEI
+-3는 단기간의 강수 변동에 민감하게 반응하여 가뭄 사건이 
+비교적 짧은 지속기간으로 나타나는 반면, 장기 가뭄지수
+인 SPEI-12는 누적된 수분 부족 상태를 반영함에 따라 가뭄 
+지속기간과 강도가 상대적으로 크게 나타난다. 또한 SMI는 
+토양수분 상태를 직접적으로 반영하는 지수로서, 기상학적 
+가뭄지수에 비해 발생빈도는 낮지만, 일단 발생한 가뭄 상
+태는 일정 기간 유지되는 특성을 보인다. 이는 가뭄지수별
+로 포착되는 가뭄의 시간적 특성이 상이함을 의미한다.
+2. 가뭄 심도의 공간 분포 및 지수별 차이
+Fig. 6은 RUNS 이론을 통해 도출된 가뭄 사건 특성 (빈
+도, 지속기간, 강도)을 기반으로 산정한 가뭄 심도 (drought 
+severity, DS)의 공간 분포를 나타낸다. DS는 세 특성을 정
+규화한 후 평균하여 계산하였으며, 총 4,012개 격자에 대해 
+산정된 값을 이용하여 공간 분포를 분석하였다. 가뭄 심도
+의 상대적 수준을 표현하기 위해 25%, 60%, 85% 퍼센타일
+을 기준으로 Low, Moderate, High, Very high의 네 단계로 
+분류하였다.
+지수별 공간 분포를 비교한 결과, SPEI-3은 남부 지역 (전
+라도 및 경상도)을 중심으로 높은 가뭄 심도 값이 집중되는 
+경향을 보였으며, 강원 내륙 일부에서도 국지적인 고심도 
+영역이 확인되었다. SPEI-6은 고심도 영역이 보다 산발적
+으로 분포하는 특징을 보였으나, 남부 지역에서 상대적으
+Fig. 3 Boxplot comparison of drought event frequency derived 
+using run theory across different drought indices (SPEI
+-3, SPEI-6, SPEI-12, and SMI)
+Fig. 4 Boxplot comparison of drought event duration (months) 
+derived from run theory across different drought indices 
+(SPEI-3, SPEI-6, SPEI-12, and SMI)
+Fig. 5 Boxplot comparison of drought event severity derived 
+from run theory across different drought indices (SPEI-3, 
+SPEI-6, SPEI-12, and SMI)
+문영식･남원호･유석균
+한국농공학회논문집 제68권 제5호, 2026 ∙ 9
+로 높은 심도 패턴은 여전히 유지되었다. 반면 SPEI-12는 
+중·장기 수분 수지 상태를 반영함에 따라 중부 및 북부 지역
+에서 비교적 연속적인 고심도 영역이 나타나는 특징을 보였
+다. SMI는 토양수분 기반 지수의 특성으로 인해 다른 지수
+와 상이한 공간 패턴을 나타냈으며, 특히 남부 일부 지역과 
+해안 지역에서 높은 가뭄 심도가 두드러졌다.
+이러한 결과는 가뭄 심도의 공간 분포가 가뭄지수의 시
+간 규모와 물리적 특성에 따라 체계적으로 달라짐을 보여준
+다. 단기 지수 (SPEI-3)는 최근 강수 부족에 민감하게 반응
+하여 남부 지역의 단기 가뭄 신호를 강조하는 반면, 장기 지
+수 (SPEI-12)는 누적 수분 부족을 반영하여 중·북부 지역의 
+지속적 가뭄 패턴을 보다 뚜렷하게 나타낸다. 또한 SMI는 
+토양수분 저장 및 방출 과정의 영향을 반영함으로써 강수 
+기반 지수와는 다른 공간적 반응을 보이며, 이는 토양수분
+이 강수뿐만 아니라 증발산 및 토양 특성 등 복합적인 요인
+의 영향을 받기 때문으로 해석된다.
+3. 가중치 산정 및 시차 기반 반응 특성 분석
+본 연구에서는 가뭄지수와 농업가뭄 발생 간의 시간적 
+관계를 반영하기 위해, 선행 연구 (Mun et al., 2026)에서 도
+출된 시차 분석 결과를 활용하였다. 해당 연구에서는 ROC-
+AUC 기반 분석을 통해 각 가뭄지수의 평균 AUC와 평균 시
+차 특성을 산정하였으며, 이를 바탕으로 가뭄지수의 농업
+가뭄 반응성을 정량적으로 평가하였다.
+가뭄지수별 상대적 중요도를 산정하기 위해 Entropy, 
+CRITIC, PCA의 세 가지 객관적 가중치 산정 방법을 적용하
+Fig. 6 Spatial distribution of drought severity (DS) across South Korea based on different drought indices: (a) SPEI-3, (b) SPEI-6, (c) 
+SPEI-12, and (d) SMI
+가뭄의 빈도·지속기간·강도와 지수 간 시차를 반영한 농업가뭄 통합지수 개발
+10 ∙ Journal of the Korean Society of Agricultural Engineers, 68(5), 2026. 9
+였다. RUNS 이론을 통해 도출된 가뭄 사건 특성을 기반으로 
+계산된 가뭄 심도를 입력자료로 활용하여 SPEI-3, SPEI-6, 
+SPEI-12, SMI의 가중치를 산정하였다.
+그러나 통계적 가중치만으로는 농업가뭄의 반응 특성을 
+충분히 반영하기 어렵기 때문에, 본 연구에서는 시차 특성
+을 고려한 가중치 재조정 절차를 추가적으로 적용하였다. 
+이를 위해 각 가뭄지수의 평균 AUC와 평균 절댓값 시차를 
+이용하여 반응 보정계수를 산정하였다 (Table 3). 감쇠 상수
+는 지수별 평균 절댓값 시차의 평균값으로 설정하였으며, 
+2.70개월로 계산되었다. 반응 보정계수는 AUC와 시차 감
+쇠함수를 결합하여 산정하였으며, 이를 통해 농업가뭄 탐
+지 성능이 높고 반응 시차가 짧은 가뭄지수에 상대적으로 
+높은 가중치가 부여되도록 하였다.
+가중치 재조정 전후 결과 비교 (Table 4)에서, 재조정 이
+전에는 가중치 산정 방법에 따라 일부 차이가 존재하였으나 
+전반적으로 유사한 분포를 나타냈다. 반면 시차 기반 보정
+을 적용한 이후에는 지수별 가중치 차이가 보다 명확하게 
+나타났다. 특히 SPEI-12는 상대적으로 긴 시차에 따른 감쇠 
+효과로 가중치가 감소하였으며, SPEI-3과 SPEI-6은 짧은 
+반응 시차와 높은 탐지 성능을 반영하여 가중치가 증가하였
+다. SMI는 재조정 전후 모두 중간 수준의 가중치를 유지하
+는 것으로 나타났다.
+이러한 결과는 농업가뭄 평가에서 단순한 통계적 정보량
+뿐만 아니라, 실제 농업가뭄 발생과의 시간적 반응 특성을 
+함께 고려하는 것이 중요함을 시사한다. 특히 단기 및 중기 
+가뭄지수는 농업가뭄 발생에 보다 민감하게 반응하는 경향
+을 보이며, 통합지수 구성에서 상대적으로 높은 중요도를 
+가질 수 있음을 의미한다.
+4. 농업가뭄 통합지수 (IADI)의 공간 분포 및 일관성 평가
+가중치 산정 방법에 따른 농업가뭄 통합지수 (IADI)의 
+공간적 분포를 비교하기 위해 Entropy, CRITIC, PCA 기반 
+가중치를 적용하여 산정된 결과를 Fig. 7에 제시하였다. 
+Fig. 7의 (a)–(c)는 각각의 가중치 산정 방법에 따른 통합지
+수의 공간 분포를 나타낸 것이다. 분석 결과, 세 가지 가중치 
+산정 방법을 적용하였음에도 불구하고 전반적인 공간 분포 
+패턴은 서로 유사하게 나타났다. 특히 전라도와 경상도를 
+포함한 남부 지역을 중심으로 높은 통합지수 값이 나타났으
+며, 제주 지역과 경기 북부 지역에서도 상대적으로 높은 값
+이 확인되었다. 이는 가중치 산정 방법의 차이가 공간적 분
+포에 미치는 영향이 제한적임을 의미한다.
+가중치 산정 방법 간 결과의 일치성을 정량적으로 평가
+하기 위해 세 가지 방법에서 도출된 가뭄 등급의 일치 여부
+를 분석하였으며, 그 결과를 Fig. 7(d)에 제시하였다. 전체 
+4,012개 격자 중 약 90.65%의 격자에서 동일한 가뭄 등급이 
+도출되었으며, 약 9.35%의 격자에서만 부분적인 차이가 나
+타났다. 이러한 결과는 가중치 산정 방법에 따른 결과의 변
+동성이 크지 않음을 보여준다.
+종합적으로, 본 연구에서 제시한 농업가뭄 통합지수는 
+Entropy, CRITIC, PCA와 같은 서로 다른 가중치 산정 방법
+을 적용하더라도 유사한 공간적 분포를 나타내며, 가중치 
+설정에 대해 비교적 안정적인 특성을 가지는 것으로 판단된
+다. 이는 통합지수가 특정 가중치 방법에 과도하게 의존하
+지 않고, 농업가뭄의 주요 공간적 패턴을 일관되게 반영할 
+수 있음을 시사한다.
+또한 통합지수의 공간 분포를 살펴보면, 남부 지역(전라
+도 및 경상도), 제주 지역, 그리고 경기 북부 지역에서 상대
+Table 3 Summary of lag characteristics (mean lag and mean absolute lag) and response adjustment coefficients of drought indices 
+derived from ROC–AUC-based time-lag analysis
+Index
+Mean AUC
+Mean lag (month)
+Mean absolute lag (months)
+Lag-adjusted response coefficient
+SPEI-3
+0.900
+  0.95
+1.98
+0.432
+SPEI-6
+0.906
+  0.08
+2.04
+0.426
+SPEI-12
+0.955
+-2.97
+3.97
+0.219
+SMI
+0.919
+-1.00
+2.81
+0.325
+Table 4 Comparison of drought index weights before and after time-lag adjustment based on Entropy, CRITIC, and PCA weighting 
+methods
+Index
+Entropy Before
+Entropy After
+CRITIC Before
+CRITIC After
+PCA Before
+PCA After
+SPEI-3
+0.250
+0.305 ▲
+0.282
+0.344 ▲
+0.291
+0.346 ▲
+SPEI-6
+0.277
+0.332 ▲
+0.235
+0.283 ▲
+0.281
+0.330 ▲
+SPEI-12
+0.232
+0.144 ▼
+0.234
+0.145 ▼
+0.200
+0.121 ▼
+SMI
+0.240
+0.220 ▼
+0.248
+0.228 ▼
+0.228
+0.204 ▼
+문영식･남원호･유석균
+한국농공학회논문집 제68권 제5호, 2026 ∙ 11
+적으로 높은 값이 나타나는 경향이 확인된다. 이러한 지역
+은 과거 가뭄의 발생 빈도, 지속기간, 강도가 상대적으로 크
+게 나타났던 지역으로 해석되며, 제안된 통합지수가 단순
+한 지수 결합을 넘어 장기적인 가뭄 특성과 누적된 영향 정
+보를 효과적으로 반영하고 있음을 보여준다.
+Ⅳ. 결  론
+본 연구에서는 위성 기반 강수 자료와 격자 단위 가뭄지
+수를 활용하여 농업가뭄을 종합적으로 평가할 수 있는 농업
+가뭄통합지수 (Integrated Agricultural Drought Index, IADI)
+를 제안하고, 가뭄 사건 특성과 가중치 산정 방법을 통합한 
+지수 산정 체계를 구축하였다. RUNS 이론을 적용하여 가
+뭄 사건의 발생빈도, 지속기간, 강도를 정량적으로 산정하
+고, 이를 기반으로 가뭄 심도를 도출하였다. 또한 Entropy, 
+CRITIC, PCA 기반 가중치 산정 기법을 적용하여 가뭄지수 
+간 상대적 중요도를 도출하고, 농업가뭄 발생과의 시간 지
+연 (time-lag)을 고려하여 가중치를 재조정함으로써 통합지
+수를 산정하였다.
+분석 결과, 가뭄 사건 특성은 가뭄지수의 시간 규모에 따
+라 체계적으로 달라졌으며, 누적 기간이 길수록 지속기간
+Fig. 7 Spatial distribution of the Integrated Agricultural Drought Index (IADI) across South Korea derived using different weighting 
+methods: (a) Entropy, (b) CRITIC, and (c) PCA, along with (d) a disagreement map highlighting areas where classification results 
+differ among methods
+가뭄의 빈도·지속기간·강도와 지수 간 시차를 반영한 농업가뭄 통합지수 개발
+12 ∙ Journal of the Korean Society of Agricultural Engineers, 68(5), 2026. 9
+과 강도가 증가하는 경향을 보였다. 가뭄 심도의 공간 분포
+는 남부 지역과 일부 중부 지역에서 상대적으로 높게 나타
+났다. 가중치 산정 방법 간 비교 결과, 통합지수의 공간 패턴
+은 전반적으로 유사하게 나타났으며, 약 90% 이상의 격자
+에서 동일한 가뭄 등급이 도출되어 가중치 방법에 따른 민
+감도는 제한적인 것으로 확인되었다. 이는 제안된 지수가 
+가중치 산정 방법에 대해 안정적인 특성을 가지며, 농업가
+뭄의 공간적 분포를 일관되게 반영할 수 있음을 시사한다.
+제안된 농업가뭄통합지수는 가뭄 사건의 구조적 특성과 
+시간적 지연 효과를 동시에 반영함으로써 기존 단일 지수 
+기반 평가의 한계를 보완하고, 농업가뭄의 복합적 특성을 
+보다 정교하게 평가할 수 있는 통합 지표를 제공한다. 또한 
+가뭄 평가를 정적 지수 중심 접근에서 사건 기반 및 동적 특
+성을 반영하는 통합적 평가 체계로 확장하였다는 점에서 중
+요한 학술적 의의를 갖는다. 특히 격자 기반 분석을 통해 농
+업가뭄의 공간적 이질성을 효과적으로 반영할 수 있어, 농
+업가뭄 모니터링 및 조기 대응 체계 구축에 활용 가능성이 
+높다.
+다만, 본 연구에서는 농업가뭄 발생자료에서 관심 단계
+를 포함한 모든 예·경보 단계를 동일하게 발생 (1)으로 처리
+하였으며, 이는 시차 분석 및 반응보정계수 산정 결과에 영
+향을 미칠 수 있는 한계가 있다. 향후에는 가뭄 강도 단계(관
+심, 주의, 경계, 심각)를 구분한 세분화된 분석을 통해 이를 
+보완할 필요가 있다.
+향후 연구에서는 본 연구에서 개발된 통합지수를 기반으
+로 인공지능 및 기계학습 기법을 적용한 농업가뭄 예측 모
+델로 확장할 필요가 있다. 과거 가뭄 사건 특성과 시차 정보
+를 학습 데이터로 활용함으로써, 기후변화에 따른 강수 변
+동성과 가뭄 발생 메커니즘을 동시에 고려한 선제적 가뭄 
+대응 체계 구축이 가능할 것으로 기대된다.
+감사의 글
+본 결과물은 농림축산식품부의 재원으로 농림식품기술
+기획평가원의 기후변화대응지능형농업기반관리기술개발
+사업의 지원을 받아 연구되었음(RS-2025-02219764).
+REFERENCES
+1.
+Dhawale, R., C. J. Schuster-Wallace, and A. Pietroniro, 2024. 
+Assessing the multidimensional nature of flood and drought 
+vulnerability index: A systematic review of literature. Inter-
+national Journal of Disaster Risk Reduction 112(1): 104764. 
+doi:10.1016/j.ijdrr.2024.104764.
+2.
+Disasa, K. N., H. Yan, J. Zhang, G. Wang, C. Zhang, D. Zhang, 
+B. Wang, and B. Hao, 2026. Comprehensive review of drought 
+characteristics and intensification under climate change: 
+Implications for agriculture and water resources. Journal of 
+Hydrology 664: 134571. doi:10.1016/j.jhydrol.2025.134571.
+3.
+Feng, D., G. Cortese, and R. Baumgartner, 2017. A comparison 
+of confidence/credible interval methods for the area under the 
+ROC curve for continuous diagnostic tests with small sample 
+size. Statistical Methods in Medical Research 26(4): 1755-1776. 
+doi:10.1177/0962280215602040.
+4.
+Hodasová, K., D. Krčmář, and I. Ondrejková, 2025. Satellite-
+based drought assessment: integrating AHP method and fuzzy 
+logic for comprehensive vulnerability and risk analysis. Natural 
+Hazards 121: 11609-11632. doi:10.1007/s11069-025-07254-8.
+5.
+Hoque, M. A. A., B. Paradgan, and N. Ahmed, 2020. Asses-
+sing drought vulnerability using geospatial techniques in north-
+western part of Bangladesh. Science of the Total Environment 
+705(25): 135957. doi:10.1016/j.scitotenv.2019.135957.
+6.
+Irawan, A. N. R., D. Komori, and V. S. A. Hendrawan, 2023. 
+Correlation analysis of agricultural drought risk on wet farming 
+crop and meteorological drought index in the tropical-humid 
+region. Theoretical and Applied Climatology 153: 227-240. 
+doi:10.1007/s00704-023-04461-w.
+7.
+Jamalzi, A. R., G. Rahman, F. Akhtar, Q. D. Ikram, and H. H. 
+Kwon, 2025. Spatiotemporal assessment and trend analysis of 
+meteorological drought in Afghanistan (1974–2023) using SPI 
+and SPEI indices. Journal of Hydrology: Regional Studies 61: 
+102711. doi:10.1016/j.ejrh.2025.102711.
+8.
+Jang, H. W., H. W. Cho, T. W. Kim, and J. H. Lee, 2016. 
+Quantitative characterization of historical drought events in 
+Korea - Focusing on outlier analysis of precipitation -. Journal 
+of Korea Water Resources Association 49(2): 145-153 (in 
+Korean). doi:10.3741/JKWRA.2016.49.2.145.
+9.
+Kim, H. J., K. W. Kim, and H. H. Kwon, 2021. Development 
+of a surrogate model based on temperature for estimation of 
+evapotranspiration and its use for drought index applicability 
+assessment. Journal of Korea Water Resources Association 
+54(11): 969-983 (in Korean). doi:10.3741/JKWRA.2021.54.
+11.969.
+10. Kim, J. E., J. Y. Yoo, H. H. Kwon, and T. W. Kim, 2023. Com-
+prehensive drought risk assessment using structural equation 
+modeling and objective weighting methods. Journal of Hydro-
+logy: Regional Studies 50: 101538. doi:10.1016/j.ejrh.2023.
+101538.
+11. Lee, J. W., S. S. Jang, S. R. Ann, K. W. Park, and S. J. Kim, 
+2016. Evaluation of the relationship between meteorological, 
+문영식･남원호･유석균
+한국농공학회논문집 제68권 제5호, 2026 ∙ 13
+agricultural and in-situ big data droughts. Journal of the Korean 
+Association of Geographic Information Studies 19(1): 64-79 
+(in Korean). doi:10.11108/kagis.2016.19.1.064.
+12. Lee, S. H., S. H. Yoo, J. Y. Choi, and S. J. Bae, 2017. Assess-
+ment of the impact of climate change on drought characteristics 
+in the Hwanghae plain, North Korea using time series SPI and 
+SPEI: 1981-2100. Water 9(8): 579. doi:10.3390/w9080579.
+13. Ma, Q., Y. Li, F. Liu, H. Feng, A. Biswas, and Q. Zhang, 2023. 
+SPEI and multi-threshold run theory based drought analysis 
+using multi-source products in China. Journal of Hydrology 
+616: 128737. doi:10.1016/j.jhydrol.2022.128737.
+14. Ma, Y., X. Yu, M. Li, J. Huang, H. Li, and T. Zhong, 2025. 
+Comprehensive drought detection, spatiotemporal variations, 
+and attribution across different agricultural climate zones in 
+Eastern China using a copula-based drought index. Agricul-
+tural Water Management 321: 109902. doi:10.1016/j.agwat.
+2025.109902.
+15. Mohammed, S., K. Alsafadi, G. O. Enaruvbe, B. Bashir, A. 
+Elbeltagi, A. Széles, A. Alsalman, and E. Harsanyi, 2022. 
+Assessing the impacts of agricultural drought (SPI/SPEI) on 
+maize and wheat yields across Hungary. Scientific Reports 12: 
+12375. doi:10.1038/s41598-022-12799-w.
+16. Mun, Y. S., W. H. Nam, and S. Yu, 2026. Characterizing agri-
+cultural drought onset and lag using gridded climate and hydro-
+logical data. Journal of the Korean Society of Agricultural 
+Engineers 68(4): 75-88 (in Korean). doi:10.5389/KSAE.2026.
+68.4.075.
+17. Mun, Y. S., W. H. Nam, M. G. Jeon, N. K. Bang, and T. G. 
+Kim, 2020. Assessment of vulnerability to drought disaster in 
+agricultural reservoirs in South Korea. Atmosphere 11(11): 
+1244. doi:10.3390/atmos11111244.
+18. Nam, W. H., J. Y. Choi, M. W. Jang, and E. M. Hong, 2013. 
+Agricultural drought risk assessment using reservoir drought 
+index. Journal of the Korean Society of Agricultural Engineers 
+55(3): 41-49 (in Korean). doi:10.5389/KSAE.2013.55.3.041.
+19. Ryu, J. H., J. J. Kim, and K. D. Lee, 2019. Development of 
+Hydroclimate Drought Index (HCDI) and evaluation of drought 
+prediction in South Korea. Journal of the Korean Society of 
+Agricultural Engineers 61(1): 31-44 (in Korean). doi:10.5389/
+KSAE.2019.61.1.031.
+20. Satapathy, T., J. Dietrich, and M. Ramadas, 2024. Agricultural 
+drought monitoring and early warning at the regional scale 
+using a remote sensing-based combined index. Environmental 
+Monitoring and Assessment 196: 1132. doi:10.1007/s10661-
+024-13265-y.
+21. Song, Y. S., J. J. Gul, H. Y. Kim, S. M. Jeong, and M. J. Park, 
+2020. A study on establishment of drought index for agri-
+cultural disaster prediction. Journal of the Korean Society of 
+Hazard Mitigation 20(6): 333-341 (in Korean). doi:10.9798/
+KOSHAM.2020.20.6.333.
+22. Suo, X., Y. Jiang, G. Chen, J. Li, Y. Lai, L. Li, M. Lu, X. Wang, 
+B. Fu, and B. Li, 2025. Spatial and temporal patterns of preci-
+pitation concentration and their associated risks. Scientific 
+Reports 15: 33152. doi:10.1038/s41598-025-18721-4.
+23. Tian, L., S. Yuan, and S. M. Quiring, 2018. Evaluation of six 
+indices for monitoring agricultural drought in the southcentral 
+United States. Agricultural and Forest Meteorology 249: 107-
+119. doi:10.1016/j.agrformet.2017.11.024.
+24. Tian, Q., J. Lu, and X. Chen, 2022. A novel comprehensive 
+agricultural drought index reflecting time lag of soil moisture 
+to meteorology: A case study in the Yangtze River basin, China. 
+CATENA 209: 105804. doi:10.1016/j.catena.2021.105804.
+25. Vicente-Serrano, S. M., S. Begueria, and J. I. Lopez-Moreno, 
+2010. A multiscalar drought index sensitive to global warming: 
+The standardized precipitation evapotranspiration index. Jour-
+nal of Climate 23(7): 1696-1718. doi:10.1175/2009JCLI2909.1.
+26. Wang, Q., R. Zhang, J. Qi, J. Zeng, J. Wu, W. Shui, X. Wu, and 
+J. Li, 2022. An improved daily standardized precipitation index 
+dataset for mainland China from 1961 to 2018. Scientific Data 
+9: 124. doi:10.1038/s41597-022-01201-z.
+27. Wilhite, D. A., and M. H. Glantz, 1985. Understanding: The 
+Drought phenomenon: The role of definitions. Water Inter-
+national 10(3): 111-120. doi:10.1080/02508068508686328.
